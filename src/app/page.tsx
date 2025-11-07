@@ -42,6 +42,15 @@ export default function Home() {
       const data = await response.json();
       if (data.success) {
         setTopics(data.data);
+        // Eğer in-memory kullanılıyorsa kullanıcıya bilgi ver
+        if (data.source === 'memory' && data.warning) {
+          console.warn(data.warning);
+        }
+      } else {
+        // Hata durumunda kullanıcıya bilgi ver
+        if (data.error && data.error.includes('MongoDB')) {
+          console.warn('MongoDB bağlantısı yok, uygulama sınırlı modda çalışıyor.');
+        }
       }
     } catch (error) {
       console.error('Konular yüklenirken hata:', error);
@@ -66,6 +75,11 @@ export default function Home() {
         setTopics([data.data, ...topics]);
         setNewTopic({ title: '', description: '', author: '' });
         setShowModal(false);
+        // Eğer in-memory kullanılıyorsa bilgi ver
+        if (data.source === 'memory' && data.warning) {
+          // Sessizce çalış, sadece console'da göster
+          console.info(data.warning);
+        }
       } else {
         alert('Hata: ' + data.error);
       }
