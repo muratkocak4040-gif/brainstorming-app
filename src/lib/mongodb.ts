@@ -19,7 +19,7 @@ async function connectDB() {
   const MONGODB_URI = process.env.MONGODB_URI || '';
 
   if (!MONGODB_URI) {
-    throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
+    throw new Error('MongoDB bağlantı bilgisi bulunamadı. Lütfen Vercel ayarlarında MONGODB_URI environment variable\'ını ekleyin. Detaylar için: https://www.mongodb.com/cloud/atlas');
   }
 
   if (cached.conn) {
