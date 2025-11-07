@@ -4,11 +4,12 @@ import Topic from '@/models/Topic';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
-    const topic = await Topic.findById(params.id);
+    const { id } = await params;
+    const topic = await Topic.findById(id);
 
     if (!topic) {
       return NextResponse.json(

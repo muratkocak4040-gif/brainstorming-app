@@ -4,10 +4,11 @@ import Topic from '@/models/Topic';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
+    const { id } = await params;
     const body = await request.json();
     const { content, author } = body;
 
@@ -18,7 +19,7 @@ export async function POST(
       );
     }
 
-    const topic = await Topic.findById(params.id);
+    const topic = await Topic.findById(id);
 
     if (!topic) {
       return NextResponse.json(
