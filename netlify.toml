@@ -9,3 +9,6 @@
   NODE_VERSION = "18"
   NPM_FLAGS = "--legacy-peer-deps"
 
+# Netlify Functions için timeout ayarı
+[functions]
+  node_bundler = "esbuild"
