@@ -6,7 +6,7 @@
   package = "@netlify/plugin-nextjs"
 
 [build.environment]
-  NODE_VERSION = "20.20.0" # 👈 burada 20.9.0 veya üstü olmalı
+  NODE_VERSION = "20.10.0" # 🔥 bu sürüm %100 destekleniyor
   NPM_FLAGS = "--legacy-peer-deps"
 
 [functions]
