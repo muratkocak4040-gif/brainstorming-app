@@ -1,14 +1,13 @@
 [build]
   command = "npm run build"
-  publish = "out"
+  publish = ".next" # ✅ out değil, .next olacak
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
 [build.environment]
-  NODE_VERSION = "20.10.0" # 🔥 bu sürüm %100 destekleniyor
+  NODE_VERSION = "20.10.0"
   NPM_FLAGS = "--legacy-peer-deps"
 
 [functions]
   node_bundler = "esbuild"
-
